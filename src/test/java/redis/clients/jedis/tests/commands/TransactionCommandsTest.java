@@ -33,7 +33,7 @@ public class TransactionCommandsTest extends JedisCommandTestBase {
 
     nj = new Jedis(hnp.getHost(), hnp.getPort(), 500);
     nj.connect();
-    nj.auth("foobared");
+    //nj.auth("foobared");
     nj.flushAll();
   }
 
@@ -46,6 +46,9 @@ public class TransactionCommandsTest extends JedisCommandTestBase {
     trans.scard("foo");
 
     List<Object> response = trans.exec();
+    for (Object obj : response) {
+		System.out.println(obj.toString());
+	}
 
     List<Object> expected = new ArrayList<Object>();
     expected.add(1L);

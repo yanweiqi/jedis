@@ -87,6 +87,9 @@ public class Connection implements Closeable {
     this.soTimeout = soTimeout;
   }
 
+  /**
+   * 设置超时时间无穷大
+   */
   public void setTimeoutInfinite() {
     try {
       if (!isConnected()) {

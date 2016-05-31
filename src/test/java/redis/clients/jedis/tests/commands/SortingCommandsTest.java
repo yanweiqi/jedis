@@ -30,6 +30,9 @@ public class SortingCommandsTest extends JedisCommandTestBase {
     jedis.lpush("foo", "1");
 
     List<String> result = jedis.sort("foo");
+    for (String s : result) {
+		System.out.println(s);
+	}
 
     List<String> expected = new ArrayList<String>();
     expected.add("1");
@@ -44,6 +47,9 @@ public class SortingCommandsTest extends JedisCommandTestBase {
     jedis.lpush(bfoo, b1);
 
     List<byte[]> bresult = jedis.sort(bfoo);
+    for (byte[] bs : bresult) {
+		System.out.println(bs[0]);
+	}
 
     List<byte[]> bexpected = new ArrayList<byte[]>();
     bexpected.add(b1);

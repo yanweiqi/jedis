@@ -27,9 +27,16 @@ public class StringValuesCommandsTest extends JedisCommandTestBase {
     assertEquals("bar", value);
   }
 
+  /**
+   * 
+   */
   @Test
   public void mget() {
     List<String> values = jedis.mget("foo", "bar");
+    
+    for (String s : values) {
+		System.out.println(s);
+	}
     List<String> expected = new ArrayList<String>();
     expected.add(null);
     expected.add(null);
@@ -64,6 +71,7 @@ public class StringValuesCommandsTest extends JedisCommandTestBase {
     status = jedis.setnx("foo", "bar2");
     assertEquals(0, status);
     assertEquals("bar", jedis.get("foo"));
+    System.out.println(jedis.get("foo"));
   }
 
   @Test
@@ -88,7 +96,8 @@ public class StringValuesCommandsTest extends JedisCommandTestBase {
     assertEquals(1, status);
     assertEquals("bar", jedis.get("foo"));
     assertEquals("foo", jedis.get("bar"));
-
+    System.out.println(jedis.mget("foo","bar").toString());
+    
     status = jedis.msetnx("foo", "bar1", "bar2", "foo2");
     assertEquals(0, status);
     assertEquals("bar", jedis.get("foo"));
